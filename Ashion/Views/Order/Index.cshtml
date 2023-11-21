@@ -1,0 +1,138 @@
+﻿@model Ashion.Models.Invoice
+<script>
+
+	function printDiv() {
+		var divPrint = document.getElementById('print_area');
+		var newWin = window.open('', 'Print-Window');
+		newWin.document.open();
+		newWin.document.write('<html><body onload="window.print()">' + divPrint.innerHTML + '</body></html>');
+		newWin.document.close();
+		setTimeout(function () { newWin.close(); }, 10);
+	}
+
+</script>
+
+<!--########################################################-->
+<section id="print_area">
+
+	<div class="card">
+		<div class="card-body">
+			<div class="container mb-5 mt-3">
+				<div class="row d-flex align-items-baseline">
+					<div class="col-xl-9">
+						<p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #@Html.DisplayFor(model => model.UserId)</strong></p>
+					</div>
+
+					<hr>
+				</div>
+
+				<div class="container">
+					<div class="col-md-12">
+						<div class="text-center">
+							<i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
+							<p class="pt-0">Ashion.com</p>
+						</div>
+
+					</div>
+
+
+					<div class="row">
+						<div class="col-xl-8">
+							<ul class="list-unstyled">
+								<li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
+								<li class="text-muted">Address:@Html.DisplayFor(model => model.Address)</li>
+								<li class="text-muted"><i class="fas fa-phone"></i> @Html.DisplayFor(model => model.Contact)</li>
+							</ul>
+						</div>
+						<div class="col-xl-4">
+							<p class="text-muted">Invoice</p>
+							<ul class="list-unstyled">
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">ID:</span>#@Html.DisplayFor(model => model.UserId)
+								</li>
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Creation Date: </span>@Html.DisplayFor(model => model.InvoiceDate)
+								</li>
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
+										Unpaid
+									</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="row my-2 mx-1 justify-content-center">
+						<table class="table table-striped table-borderless">
+							<thead  class="alert alert-success text-bg-dark">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Description</th>
+									<th scope="col">Qty</th>
+									<th scope="col">Unit Price</th>
+									<th scope="col">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<th scope="row">@Model.InvoiceId</th>
+									<td>@Model.UserId</td>
+									<td>@Model.Payment</td>
+									<td>$300</td>
+									<td>@Model.Bill</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-xl-8">
+							<p class="ms-3">Add additional notes and payment information</p>
+
+						</div>
+
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-xl-10">
+							<p>Thank you for your purchase</p>
+						</div>
+						<div class="col-xl-2">
+							<button type="button" class=" btn btn-primary btn-success"
+									onclick="printDiv()">
+								Print
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<!--###################################################-->
+
+
+	<div class="container mt-5">
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Order Placed Successfully!</h4>
+			<p>Thank you for your order. We have received your request and will process it shortly.</p>
+			<hr>
+			<p class="mb-0">If you have any questions, feel free to <a href="#">contact us</a>.</p>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</section>
+
+

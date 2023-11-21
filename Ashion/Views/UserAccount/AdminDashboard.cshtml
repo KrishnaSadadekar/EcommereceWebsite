@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Ashion.Models.BillDetail>
+
+@{
+	ViewBag.Title = "AdminDashboard";
+	Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+	var p = @ViewBag.details as Ashion.Models.ReportDetails;
+}
+
+<div class="container">
+	<div class="row d-flex justify-content-center">
+		<div class="col-xl-8 col-lg-7 bg-light mt-2">
+			<nav class="header__menu">
+				<ul class="d-flex justify-content-center">
+					<li><strong class="text-danger">Total Orders:@p.tOrders</strong></li>
+					<li><strong>Total Bills:@p.tInvoice</strong></li>
+					<li><strong>Total Users:@p.tUsers</strong></li>
+					<li><strong>Turnover:@p.turnover</strong></li>
+
+				</ul>
+			</nav>
+
+		</div>
+	</div>
+		<div>
+			<h4 class="d-flex justify-content-center mt-3">Orders</h4>
+			<table class="table mt-3 border rounded">
+				<tr class="bg-info">
+					<th>
+						@Html.DisplayNameFor(model => model.InvoiceId)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.UserId)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.FirstName)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.LastName)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.PostCode)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.AddressL)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.PhoneN)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.InvoiceDate)
+					</th>
+					<th></th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.InvoiceId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.UserId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.FirstName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.LastName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.PostCode)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.AddressL)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.PhoneN)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.InvoiceDate)
+						</td>
+
+					</tr>
+
+				}
+
+
+			</table>
+			<hr />
+		</div>
+
+
+	</div>

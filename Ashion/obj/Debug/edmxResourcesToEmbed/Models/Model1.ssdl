@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AshionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CatId" />
+    </Key>
+    <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CatName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProId" Type="int" Nullable="false" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="InvoiceId" Type="int" />
+    <Property Name="Size" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="int" />
+  </EntityType>
+  <EntityType Name="PersonalDetails">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="AddressL" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneN" Type="varchar" MaxLength="50" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductList">
+    <Key>
+      <PropertyRef Name="ProId" />
+    </Key>
+    <Property Name="ProId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="CatId" Type="int" />
+  </EntityType>
+  <EntityType Name="Query">
+    <Key>
+      <PropertyRef Name="QueryId" />
+    </Key>
+    <Property Name="QueryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+    <Property Name="Query" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UserD">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+    <Property Name="RoleType" Type="varchar" MaxLength="50" />
+    <Property Name="Position" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ashion.dbo.BillDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BillDetails">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="AddressL" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneN" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ashion.dbo.ProductView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductView">
+    <Key>
+      <PropertyRef Name="ProId" />
+    </Key>
+    <Property Name="ProId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="CatName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Invoice_UserD">
+    <End Role="UserD" Type="Self.UserD" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserD">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="InvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_ProductList">
+    <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductList">
+        <PropertyRef Name="ProId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ProId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_UserD">
+    <End Role="UserD" Type="Self.UserD" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserD">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductList_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CatId" />
+      </Principal>
+      <Dependent Role="ProductList">
+        <PropertyRef Name="CatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AshionModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonalDetails" EntityType="Self.PersonalDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductList" EntityType="Self.ProductList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserD" EntityType="Self.UserD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillDetails" EntityType="Self.BillDetails" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BillDetails].[InvoiceId] AS [InvoiceId], 
+    [BillDetails].[UserId] AS [UserId], 
+    [BillDetails].[FirstName] AS [FirstName], 
+    [BillDetails].[LastName] AS [LastName], 
+    [BillDetails].[PostCode] AS [PostCode], 
+    [BillDetails].[AddressL] AS [AddressL], 
+    [BillDetails].[PhoneN] AS [PhoneN], 
+    [BillDetails].[InvoiceDate] AS [InvoiceDate]
+    FROM [dbo].[BillDetails] AS [BillDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductView" EntityType="Self.ProductView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductView].[ProId] AS [ProId], 
+    [ProductView].[Name] AS [Name], 
+    [ProductView].[Description] AS [Description], 
+    [ProductView].[Unit] AS [Unit], 
+    [ProductView].[CatName] AS [CatName]
+    FROM [dbo].[ProductView] AS [ProductView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Invoice_UserD" Association="Self.FK_Invoice_UserD">
+      <End Role="UserD" EntitySet="UserD" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Invoice" Association="Self.FK_Order_Invoice">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_ProductList" Association="Self.FK_Order_ProductList">
+      <End Role="ProductList" EntitySet="ProductList" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_UserD" Association="Self.FK_Order_UserD">
+      <End Role="UserD" EntitySet="UserD" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductList_Categories" Association="Self.FK_ProductList_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="ProductList" EntitySet="ProductList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

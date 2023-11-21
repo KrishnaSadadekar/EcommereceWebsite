@@ -1,0 +1,184 @@
+﻿@model Ashion.Models.BillDetail
+<script>
+
+	function printDiv() {
+		var divPrint = document.getElementById('print_area');
+		var newWin = window.open('', 'Print-Window');
+		newWin.document.open();
+		newWin.document.write('<html><body onload="window.print()">' + divPrint.innerHTML + '</body></html>');
+		newWin.document.close();
+		setTimeout(function () { newWin.close(); }, 10);
+	}
+
+</script>
+
+
+
+
+
+
+<section id="print_area">
+
+	<div class="card">
+		<div class="card-body">
+			<div class="container mb-5 mt-3">
+				<div class="row d-flex align-items-baseline">
+					<div>
+						<img src="~/img/logo.png" />
+					</div>
+					<hr>
+				</div>
+
+				<div class="container">
+					
+					<div class="col-md-12">
+						<div class="text-center">
+							<i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
+
+							<p class="pt-0 display-4 text-center">Ashion.com</p>
+						</div>
+						
+					</div>
+
+
+					<div class="row">
+						<div class="col-xl-8">
+							<ul class="list-unstyled">
+								<li><h5 class="fw-bold">To,</h5>@Model.FirstName&nbsp;@Model.LastName</li>
+								<li><h5 class="fw-bold">Address:</h5>@Model.AddressL</li>
+								<li><i class="fas fa-phone"></i> @Model.PhoneN</li>
+							</ul>
+						</div>
+						<div class="col-xl-4">
+							<p class="text-muted">Invoice</p>
+							<ul class="list-unstyled">
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">ID:</span>#@Html.DisplayFor(model => model.UserId)
+								</li>
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Creation Date: </span>@Html.DisplayFor(model => model.InvoiceDate)
+								</li>
+								<li class="text-muted">
+									<i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
+										Unpaid
+									</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-6">
+							
+							<hr />
+							<dl class="dl-horizontal">
+								<dt>
+									@Html.DisplayNameFor(model => model.InvoiceId)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.InvoiceId)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.UserId)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.UserId)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.FirstName)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.FirstName)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.LastName)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.LastName)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.PostCode)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.PostCode)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.AddressL)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.AddressL)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.PhoneN)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.PhoneN)
+								</dd>
+
+							</dl>
+						</div>
+						<div class="col-md-6">
+							<img src="~/img/paymentDone.png" class="img-fluid m-lg-auto"/>
+						</div>
+
+
+					</div>
+					<div class="row">
+						
+						<div class="container mt-5">
+							<div class="alert alert-success" role="alert">
+								<h4 class="alert-heading">Order Placed Successfully!</h4>
+								<p>Thank you for your order. We have received your request and will process it shortly.</p>
+								<hr>
+								<p class="mb-0">If you have any questions, feel free to <a href="#">contact us</a>.</p>
+							</div>
+						</div>
+
+					</div>
+					<hr>
+					<div class="row">
+						
+						<div class="col-xl-2">
+							<button type="button" class=" btn btn-primary btn-success"
+									onclick="printDiv()">
+								Print
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+
+
+
+
+
+
+	<!--###################################################-->
+
+
+	
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</section>

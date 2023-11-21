@@ -1,0 +1,58 @@
+﻿@model Ashion.Models.ProductList
+
+@{
+	List<int> catId = new List<int> { 10,11,12,13,14,15 };
+	ViewBag.Title = "AddProduct";
+	Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@{
+	ViewBag.Title = "AddProduct";
+}
+
+<h3 class="d-flex justify-content-center mt-3">AddProduct</h3>
+
+@using (Html.BeginForm("AddProduct", "UserAccount", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+
+
+	<div class="form-group col-md-3 mb-3">
+
+		@Html.LabelFor(model => model.Name)
+		@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+	</div>
+	<div class="form-group col-md-3 mb-3">
+		@Html.LabelFor(model => model.Description)
+		@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+	</div>
+	<div class="form-group col-md-3 mb-3">
+		<span>CategoryId:</span>
+		<select id="dropdown" name="size" class="btn dropdown-toggle">
+			@foreach (var item in catId)
+			{
+				<option class="dropdown-item" value="@item">@item</option>
+			}
+		</select>	
+	</div>
+
+
+	<div class="form-group col-md-3 mb-3">
+		@Html.LabelFor(model => model.Image)
+		@Html.TextBoxFor(model => model.Image, new { @class = "form-control" })
+	</div>
+
+	<div class="form-group col-md-3 mb-3">
+		@Html.LabelFor(model => model.Unit)
+		@Html.TextBoxFor(model => model.Unit, new { type="number", @class = "form-control" })
+	</div>
+
+
+
+	<div class="form-group col-md-3 mb-3">
+
+		<input type="submit" value="Add Product" class="btn btn-primary mt-4" />
+		<h6 style="color:red" class="row mt-4 justify-content-sm-start">@TempData["msg"]</h6>
+	</div>
+		}
+

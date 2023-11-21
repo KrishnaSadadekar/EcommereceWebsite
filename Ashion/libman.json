@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.7.1",
+      "destination": "lib/jquery/"
+    },
+    {
+      "library": "font-awesome@6.4.2",
+      "destination": "lib/font-awesome/"
+    },
+    {
+      "library": "magnific-popup.js@1.1.0",
+      "destination": "lib/magnific-popup.js/"
+    },
+    {
+      "library": "OwlCarousel2@2.3.4",
+      "destination": "lib/OwlCarousel2/"
+    },
+    {
+      "provider": "filesystem",
+      "library": "Content/css/slicknav.min.css",
+      "destination": "lib/slicknav.min/"
+    },
+    {
+      "provider": "filesystem",
+      "library": ".DS_Store",
+      "destination": "lib/elegant-icons/"
+    },
+    {
+      "provider": "filesystem",
+      "library": "cdnjs/",
+      "destination": "lib/cdnjs/"
+    }
+  ]
+}

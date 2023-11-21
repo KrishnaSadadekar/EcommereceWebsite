@@ -1,0 +1,152 @@
+﻿@model Ashion.Models.Item
+@{
+	List<string> items = new List<string> { "small", "medium", "large" };
+	ViewBag.Title = "AddToCart";
+
+
+}
+
+@try { 
+<section class="products">
+
+
+	<div class="container mt-5">
+
+		@using (Html.BeginForm("ProductDetails", "Cart", FormMethod.Post))
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="row">
+				<div class="col-lg-6">
+					<img src="@Url.Content(Model.Image)" class="img-fluid" alt="Product Image">
+				</div>
+
+				<div class="col-lg-6">
+					<div class="product__details__text">
+						<h3>@Model.Name<span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
+
+						<div class="product__details__price">$ @Model.Unit<span>$ 83.0</span></div>
+						<p>
+							@Model.Description
+						</p>
+						<div class="product__details__button">
+							<div class="quantity">
+
+								<span>Quantity:</span>
+								<div class="pro-qty">
+									<span class="dec qtybtn">-</span>
+
+									<input type="number" min="1" max="10" name="qty" />
+
+									<span class="inc qtybtn">+</span>
+								</div>
+
+
+							</div>
+							<input type="submit" class="btn btn-primary mt-1" value="Add to Cart">
+
+
+						</div>
+						<div class="product__details__widget">
+							<ul>
+
+								<li>
+									<span>Available size:</span>
+									<select id="dropdown" name="size" class="mb-3 col-md-4 btn dropdown-toggle">
+										@foreach (var item in items)
+										{
+											<option class="dropdown-item" value="@item">@item</option>
+										}
+									</select>
+
+								</li>
+								<li>
+									<span>Promotions:</span>
+									<p>Free shipping</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="product__details__tab">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Specification</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tabs-1" role="tabpanel">
+								<h6>Description</h6>
+								<p>
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+									quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+									Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+									voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+									consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+									consequat massa quis enim.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem.
+								</p>
+							</div>
+							<div class="tab-pane" id="tabs-2" role="tabpanel">
+								<h6>Specification</h6>
+								<p>
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+									quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+									Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+									voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+									consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+									consequat massa quis enim.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem.
+								</p>
+							</div>
+							<div class="tab-pane" id="tabs-3" role="tabpanel">
+								<h6>Reviews ( 2 )</h6>
+								<p>
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+									quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+									Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+									voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+									consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+									consequat massa quis enim.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		}
+	</div>
+
+</section>
+
+}catch { }
+<div>
+
+
+</div>
